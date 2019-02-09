@@ -1,0 +1,54 @@
+
+<html>
+
+<script type="text/javascript" src="prescriptionfinder.js"></script>
+
+
+</script>
+<header>
+<link href="prescriptionfinder.css" rel="stylesheet">
+</header>
+<body onload="loadData();" onload="searchMedications();" onload="checkStock();" >
+
+<div class="sidenav">
+  <a href="#">Home</a>
+  <a href="#medication">Medication</a>
+  <a href="#stores">Stores</a>
+  <a href="#stock">Stock</a>
+</div>
+
+<div class="header">
+  <h1>Medication Inventory</h1>
+  <p>Check if in stock!!! :))) x</p>
+</div>
+
+<div class="main">
+
+<section id="medication">
+
+<input type="text" placeholder="Enter a medication" id="textsearch" oninput="searchMedications(document.getElementById('textsearch'))" />
+<button  onclick="searchMedications(document.getElementById('textsearch'))" >CLICK ME</button>
+
+<div id="hey"></div>
+
+<div id="table"></div>
+</section>
+
+<section id="stores">
+<input type="text" placeholder="Enter a store" id="storesearch" oninput="searchStores(document.getElementById('storesearch'))" />
+<button onclick = "searchStores(document.getElementById('storesearch'))">CLICKYCLICK</button>
+
+<div id="storetable"></div>
+
+</section>
+
+<section id="stock">
+<input type="text" placeholder="Enter a store" id="stocksearch" )" />
+<button onclick = "checkStock(document.getElementById('stocksearch'))">CLICKYCLICK</button>
+
+<div id="stocktable"></div>
+</section>
+
+
+</body>
+</html>
