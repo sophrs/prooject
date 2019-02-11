@@ -4,6 +4,7 @@ function loadData(){
     LoadMedData();
     LoadStoreData();
     LoadStockDate();
+ 
 }
 
 ////////for the manufacturer table//////////////
@@ -16,7 +17,7 @@ function LoadManData(){
      xmlHttp.send(null);
      let jsonString = xmlHttp.responseText;
      manList = JSON.parse(jsonString);
-     console.log(manList[1]);
+     console.log(manList[33]);
  }
 
 /////////////for the store table/////////////////////
@@ -64,28 +65,19 @@ function searchMedications(name){
     document.getElementById("table").innerHTML = "";
     tableString = "";
     tableString += "<table><tr>";
-    tableString += "<th>Medication Name </th><th> Nhs Number </th><th> Manufacturer </th></tr>";
+    tableString += "<th>Medication Name </th><th> Nhs Number </th><th> Manufacturer </th><th> Manufacturer Phone Number</tr>";
 
     for(i in medList){
         if(medList[i].medicationName.toUpperCase().includes(name.value.toUpperCase())){
             tableString += "<tr><td>"+medList[i].medicationName+"</td><td>";
             tableString += medList[i].nhsnumber+"</td>";
-            tableString += "<td>"+getManName(medList[i].manufacturerid);+"</td></tr>";
+            tableString += "<td>"+manList[medList[i].manufacturerid].manufacturer_name; +"</td></tr>";
+            tableString += "<td>"+manList[medList[i].manufacturerid].phoneNumber; +"</td></tr>";
         }
     } 
 
     tableString += "</table>";
     document.getElementById("table").innerHTML = tableString;
-}
-
-
-function getManName(idnumber){
-    for(i in manList){
-        if (idnumber === manList[i].manId){
-                   console.log("hey")
-                 manList[i].manufacturer_name;
-                 console.log("hi")
-            }}
 }
 
 
@@ -102,6 +94,7 @@ function searchStores(name){
             tableString += "<tr><td>"+storeList[i].storename+"</td><td>";
             tableString += storeList[i].phonenumber+"</td><td>";
             tableString += storeList[i].address+"</td></tr>"
+            console.log
         }
     } 
 
@@ -109,33 +102,61 @@ function searchStores(name){
     document.getElementById("storetable").innerHTML = tableString;
 }
 
+/////////////////////put request////////////////////////
+
+function updatestock(newnumber, medid){
+console.log(stockcheckList[0].stockno);
+let url = "http://localhost:8080/api/stockcheck/"
+let data = {};
+data.stockno = newnumber;
+let json = JSON.stringify(data);
+
+let xhr = new XMLHttpRequest();
+xhr.open("PUT",url+medid,true);
+xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+xhr.onload = function(){
+    let stockcheck = JSON.parse(xhr.responseText);
+    if(xhr.readyState == 4 && xhr.status == "200"){
+        console.table(stockcheck);
+    } else {
+        console.error(stockcheck);
+    }
+    }
+
+xhr.send(json);
+
+console.log(stockcheckList[0].stockno);
+}
+
+
+
 /////////////////for the search check stock table//////////////
 
 function checkStock(name){
-    let mednumber = [];
     document.getElementById("stocktable").innerHTML="";
     tableString = "";
     tableString += "<table><tr>";
-    tableString += "<th>Medication</th><th> Store </th><th> Stock Number</th></tr>";
+    tableString += "<th>Medication</th><th> Store </th><th> Stock Number</th><th> Change Stock No. </th></tr>";
 
     for(i in medList){
      if(medList[i].medicationName.toUpperCase().includes(name.value.toUpperCase())){
-         tableString += "<tr><td>"+medList[i].medicationName+"</td><td>";
-         mednumber[i] = medList[i].medId;
-         console.log(mednumber)
-             } }
+         tableString += "<tr><td>"+medList[i].medicationName+"</td>";
+         tableString += "<td> " +  getStoreName(stockcheckList[medList[i].medId - 1].storeid)+ "</td>";
+         tableString += "<td id='stock'> " + stockcheckList[medList[i].medId - 1].stockno+"</td>";
+         console.log(medList[i].medId);
+         tableString += "<td><input type='text' id= \"newstockno\"></td>"
+         tableString += "<td><button onclick='updatestock(document.getElementById(\"newstockno\").value, "+medList[i].medId +");'>hi</button></td></tr>"
 
-    for(i in stockcheckList){
-    if( mednumber[i] === stockcheckList[i].medicationid){
-         tableString += stockcheckList[i].storeid+ "</td><td>";
-       
-        tableString += stockcheckList[i].stockno+"</td><tr>";
-        }
-    }
 
-    
+      // tableString += "<td><input type='text' id='newstockno"+i+"'><button onclick='document.getElementById("+'"'+"stock"+i+'"'+").innerHTML=document.getElementById("+'"'+"newstockno"+i+'"'+").value';"
 
-     tableString += "</table>";
+       // tableString += "updatestock(document.getElementById('stock').value,"+ medList[i].medId+" )";
+      //tab"onclick='updatestock(document.getElementById("+'"'+"newstockno"+i+'"'+").value,"+medList[i].medId+")'>hi</button></td></tr>";
+
+             } 
+         }
+
+      tableString += "</table>";
     document.getElementById("stocktable").innerHTML = tableString;
 }
 
@@ -148,6 +169,30 @@ function getStoreName(storeid){
     }
 }
 
+
+////////////////////add a new medicine//////////////
+function addMedicine(){
+let url = "http://localhost:8080/api/medication";
+let data = {};
+data.manufacturerid="document.getElementById('medname').value;"
+data.medicationName="document.getElementById('manufacturer').value;"
+data.nhsnumber="document.getElementById('nhsnum').value;"
+let json = JSON.stringify(data);
+
+let xhr= newXMLHttpRequest();
+xhr.open("POST",url,true);
+xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+xhr.onload=function(){
+	var medication = JSON.parse(xhr.responseText);
+	if(xhr.readyState ==4 && xhr.status == "201"){
+		console.table(medication);
+	}else {
+		console.error(medication);
+	}
+	xhr.send(json);
+}
+
+}
 
 
 

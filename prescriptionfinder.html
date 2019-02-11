@@ -1,4 +1,3 @@
-
 <html>
 
 <script type="text/javascript" src="prescriptionfinder.js"></script>
@@ -8,20 +7,20 @@
 <header>
 <link href="prescriptionfinder.css" rel="stylesheet">
 </header>
-<body onload="loadData();" onload="searchMedications();" onload="checkStock();" >
+<body onload="loadData();" >
 
 <nav class="navigation">
   <ul class="mainmenu">
     <li><a href="">Home</a></li>
-    <li><a href="">StockCheck</a></li>
-    <li><a href="">Stores</a>
+    <li><a href="#stock">StockCheck</a></li>
+    <li><a href="#stores">Stores</a>
       <ul class="submenu">
-        <li><a href="">Add New Store</a></li>
+        <li><a href="#addstore">Add New Store</a></li>
       </ul>
     </li>
-   <li><a href="">Medicines</a>
+   <li><a href="#medication">Medicines</a>
       <ul class="submenu">
-        <li><a href="">Add New Medicines</a></li>
+        <li><a href="#addmed">Add New Medicines</a></li>
       </ul>
     </li>
   </ul>
@@ -45,13 +44,13 @@
 	<div id ="addmed">
 		<h1>Add a Store </h1>
 		<form>
-			Store Name:<br>
-			<input type="text" name="Medication Name:"><br>
-			Store PhoneNumber:<br>
-			<input type="text" name="NHS Number"><br>
-			Store Address:<br>
-			<input type="text" name="Supplier"><br>
-			<input type="submit">
+			Medicine Name:<br>
+			<input type="text" id="medname"><br>
+			NHS Number:<br>
+			<input type="text" id="nhsnum"><br>
+			Manufacturer ID:<br>
+			<input type="text" id="manufacturer"><br>
+			<button onclick ="addMedicine()">hola</button>
 		</form>
 
 	</div>
@@ -90,4 +89,4 @@
 
 
 </body>
-</html>
+</html
