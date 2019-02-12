@@ -33,16 +33,9 @@
   <h1>Medication Inventory</h1>
   <p>Check if in stock!!! :))) x</p>
 </div>
-<section id="medication">
-	<div id= "wrap">
-	<input type="text" placeholder="Enter a medication" id="textsearch" oninput="searchMedications(document.getElementById('textsearch'))" />
-	<button id="medsearch" onclick="searchMedications(document.getElementById('textsearch'))" >Search Medicines</button>
-	</div>
-	<div id="table"></div>
 
-
-	<div id ="addmed">
-		<h1>Add a Store </h1>
+<div id ="addmed">
+		<h1>Add a Medication </h1>
 		<form>
 			Medicine Name:<br>
 			<input type="text" id="medname"><br>
@@ -50,39 +43,49 @@
 			<input type="text" id="nhsnum"><br>
 			Manufacturer ID:<br>
 			<input type="text" id="manufacturer"><br>
-			<button onclick ="addMedicine()">hola</button>
+			<button id="addmedbutt" onclick ="addMedicine()">Add</button>
 		</form>
-
 	</div>
-	
-
-</section>
-
-<section id="stores">
-	<input type="text" placeholder="Enter a store" id="storesearch" oninput="searchStores(document.getElementById('storesearch'))" />
-	<button onclick = "searchStores(document.getElementById('storesearch'))">Search Stores</button>
-	<div id="storetable"></div>
-
 
 	<div id ="addstore">
 		<h1>Add a Store </h1>
 		<form>
 			Store Name:<br>
-			<input type="text" name="storename"><br>
+			<input type="text" id = "storename"><br>
 			Store PhoneNumber:<br>
-			<input type="text" name="storenumber"><br>
+			<input type="text" id = "storenum"><br>
 			Store Address:<br>
-			<input type="text" name="storeaddress"><br>
+			<input type="text" id="storeaddress" ><br>
+			<button id="addstorebutt" onclick = "addStore()">Add</button>
 		</form>
-
 	</div>
-</section>
 
 <section id="stock">
 	<input type="text" placeholder="Enter a medicine" id="stockcheck"/>
-	<button onclick ="checkStock(document.getElementById('stockcheck'))">Type Medicine</button>
+	<button id ="stockbutt" onclick ="checkStock(document.getElementById('stockcheck'))">Type Medicine</button>
 	<div id="stocktable"></div>
 </section>
+
+<section id="medication">
+	<div id= "medwrap">
+	<input type="text" placeholder="Enter a medicine" id="textsearch" oninput="searchMedications(document.getElementById('textsearch'))" />
+	<button id="medsearch" onclick="searchMedications(document.getElementById('textsearch'))" >Search Medicines</button>
+	</div>
+	<div id="table"></div>
+
+
+</section>
+
+<section id="stores">
+
+	<input type="text" placeholder="Enter a store" id="storesearch" oninput="searchStores(document.getElementById('storesearch'))" />
+	<button id="storebutt"onclick = "searchStores(document.getElementById('storesearch'))">Search Stores</button>
+	
+	<div id="storetable"></div>
+</section>
+
+	
+
 
 
 

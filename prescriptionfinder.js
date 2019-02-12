@@ -172,27 +172,55 @@ function getStoreName(storeid){
 
 ////////////////////add a new medicine//////////////
 function addMedicine(){
-let url = "http://localhost:8080/api/medication";
-let data = {};
-data.manufacturerid="document.getElementById('medname').value;"
-data.medicationName="document.getElementById('manufacturer').value;"
-data.nhsnumber="document.getElementById('nhsnum').value;"
-let json = JSON.stringify(data);
+	let url = "http://localhost:8080/api/medication";
+		newmanufacturerid =parseInt(document.getElementById('manufacturer').value);
+		newmedicationName=document.getElementById('medname').value;
+		newnhsnumber=document.getElementById('nhsnum').value;
+		
+	let json = JSON.stringify(
+			{
+				"manufacturerid" : newmanufacturerid,
+				"medicationName" : newmedicationName,
+				"nhsnumber" : newnhsnumber
 
-let xhr= newXMLHttpRequest();
-xhr.open("POST",url,true);
-xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-xhr.onload=function(){
-	var medication = JSON.parse(xhr.responseText);
-	if(xhr.readyState ==4 && xhr.status == "201"){
-		console.table(medication);
-	}else {
-		console.error(medication);
-	}
+			});
+
+	let xhr= new XMLHttpRequest();
+	xhr.open("POST",url,true);
+	xhr.setRequestHeader('Content-type','application/json');
+	xhr.setRequestHeader('Access-Control-Allow-Origin','*');
 	xhr.send(json);
-}
+	}
+
+
+///////////////add a new store///////////////////
+
+function addStore(){
+	let url = "http://localhost:8080/api/store";
+		newstorename = document.getElementById('storename').value;
+		newstoreno = document.getElementById('storenum').value;
+		newstoreaddre = document.getElementById('storeaddress').value;
+
+	let json = JSON.stringify(
+	{
+		"storename" : newstorename,
+		"address" : newstoreaddre,
+		"phonenumber" : newstoreno
+	});
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST",url,true);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+	xhr.send(json);
+	if(xhr.readyState == 4 && xhr.status == "200"){
+		document.getElementById('storeadded').innerHTML="Store Added to Database!!";
+
+	}
 
 }
+
+
 
 
 

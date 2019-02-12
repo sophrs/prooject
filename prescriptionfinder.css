@@ -61,11 +61,11 @@
 .main {
   margin-left:250px; 
   padding: 0px 10px;
-  
+
 }
 
 #table th{
-    padding-top: 12px;
+  padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #2c7a7a;
@@ -84,7 +84,7 @@ tr:hover{
 }
 
 #storetable th{
-    padding-top: 12px;
+  padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #2c7a7a;
@@ -109,44 +109,52 @@ tr:hover{
   padding: 8px;
 }
 
-#textsearch{
-width: 500px;
-height: 40px;
-margin: 150px auto;
-background: #2c7a7a;
-background: rgba(0,0,0,.2);
-border-radius:  3px;
-border: 4px solid #afdbdb;
+
+
+#textsearch,#storesearch,#stockcheck{
+  width: 300px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #9bdbdb;
+  border-radius: 4px;
 }
 
-#textsearch input{
-  width: 370px;
-    padding: 10px 5px;
-    float: left;
-    color: #ccc;
-    border: 0;
-    background: transparent;
-    border-radius: 3px 0 0 3px;
-
+#textsearch:focus, #storesearch:focus, #stockcheck:focus{
+  background-color: #afdbdb;
 }
 
-#medsearch{
-  position: relative;
-  float: right;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  height: 40px;
-  width: 120px;
-  color: #fff;
-  background: transparent;
-  border-left: 1px solid #fff;
-  border-radius: 0 3px 3px 0;
+#medsearch,#storebutt,#stockbutt,#addmedbutt, #addstorebutt{
+  background-color: #9bdbdb;
+  transition-duration: 0.4s;
+  border:2px solid #9bdbdb;
+  height: 43px;
 }
-#medsearch:hover{
-  background: #fff;
-  color:#444;
+#medsearch:hover,#storebutt:hover, #stockbutt:hover, #addstorebutt:hover, #addmedbutt:hover{
+  background-color: #afdbdb;
 }
-#medsearch:active{
-  box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
+
+#addmed,#addstore{
+    border: 4px solid #2c7a7a;
+    width: 18%;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 40px;
+    float:right;
+   
 }
+
+#medname, #nhsnum, #manufacturer, #storename, #storenum, #storeaddress{
+  width: 300px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #9bdbdb;
+  border-radius: 4px;
+}
+
+#medname:focus, #nhsnum:focus, #manufacturer:focus, #storename:focus, #storenum:focus, #storeaddress:focus{
+  background-color: #afdbdb;
+}
+
