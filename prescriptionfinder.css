@@ -4,7 +4,7 @@
   background: #1abc9c;
   color: white;
   font-size: 30px;
-/*  background-image: url(header.jpeg);*/
+  background-image: url(header.jpeg);
  
 }
 
@@ -142,7 +142,7 @@ tr:hover{
     padding-bottom: 20px;
     padding-right: 40px;
     float:right;
-   
+
 }
 
 #medname, #nhsnum, #manufacturer, #storename, #storenum, #storeaddress{

@@ -118,17 +118,16 @@ xhr.onload = function(){
     let stockcheck = JSON.parse(xhr.responseText);
     if(xhr.readyState == 4 && xhr.status == "200"){
         console.table(stockcheck);
+        document.getElementById("worked").innerHTML = "stock changed";
+      //  document.getElementById("stock").innerHTML = newnumber;
     } else {
         console.error(stockcheck);
     }
     }
 
 xhr.send(json);
-
-console.log(stockcheckList[0].stockno);
+setTimeout(function(){ window.location.href = window.location.href; }, 1000);
 }
-
-
 
 /////////////////for the search check stock table//////////////
 
@@ -142,16 +141,10 @@ function checkStock(name){
      if(medList[i].medicationName.toUpperCase().includes(name.value.toUpperCase())){
          tableString += "<tr><td>"+medList[i].medicationName+"</td>";
          tableString += "<td> " +  getStoreName(stockcheckList[medList[i].medId - 1].storeid)+ "</td>";
-         tableString += "<td id='stock'> " + stockcheckList[medList[i].medId - 1].stockno+"</td>";
+         tableString += "<td><div = id='stock'> " + stockcheckList[medList[i].medId - 1].stockno+"</div></td>";
          console.log(medList[i].medId);
          tableString += "<td><input type='text' id= \"newstockno\"></td>"
-         tableString += "<td><button onclick='updatestock(document.getElementById(\"newstockno\").value, "+medList[i].medId +");'>hi</button></td></tr>"
-
-
-      // tableString += "<td><input type='text' id='newstockno"+i+"'><button onclick='document.getElementById("+'"'+"stock"+i+'"'+").innerHTML=document.getElementById("+'"'+"newstockno"+i+'"'+").value';"
-
-       // tableString += "updatestock(document.getElementById('stock').value,"+ medList[i].medId+" )";
-      //tab"onclick='updatestock(document.getElementById("+'"'+"newstockno"+i+'"'+").value,"+medList[i].medId+")'>hi</button></td></tr>";
+         tableString += "<td><button onclick='updatestock(document.getElementById(\"newstockno\").value, "+medList[i].medId +");'>Change</button></td><td><div id=\"worked\"></div></td></tr>"
 
              } 
          }
@@ -159,6 +152,7 @@ function checkStock(name){
       tableString += "</table>";
     document.getElementById("stocktable").innerHTML = tableString;
 }
+
 
 
 function getStoreName(storeid){
@@ -190,6 +184,7 @@ function addMedicine(){
 	xhr.setRequestHeader('Content-type','application/json');
 	xhr.setRequestHeader('Access-Control-Allow-Origin','*');
 	xhr.send(json);
+
 	}
 
 
@@ -213,10 +208,9 @@ function addStore(){
 	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xhr.send(json);
-	if(xhr.readyState == 4 && xhr.status == "200"){
-		document.getElementById('storeadded').innerHTML="Store Added to Database!!";
 
-	}
+
+	
 
 }
 
